@@ -212,12 +212,10 @@ class COM:
                 logger.critical(f"{self.name}{type(e).__name__}: {e}")
 
     @overload
-    async def send(self, cmd: str) -> None:
-        ...
+    async def send(self, cmd: str) -> None: ...
 
     @overload
-    async def send(self, cmd: CmdParse[Any, T]) -> T:
-        ...
+    async def send(self, cmd: CmdParse[Any, T]) -> T: ...
 
     async def send(self, cmd: str | CmdParse[Any, T]) -> None | T:
         """Sends a command to an instrument.

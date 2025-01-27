@@ -67,12 +67,10 @@ class CheckedDCAMAPI(DCAMAPI, metaclass=Singleton):  # type: ignore
         return f
 
 
-class DCAMException(Exception):
-    ...
+class DCAMException(Exception): ...
 
 
-class DCAMReturnedZero(DCAMException):
-    ...
+class DCAMReturnedZero(DCAMException): ...
 
 
 class DCAM_CAPTURE_MODE(IntEnum):
