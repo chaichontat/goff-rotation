@@ -28,13 +28,11 @@ class AbstractCommand(metaclass=ABCMeta):
     op: str
 
     @abstractmethod
-    async def run(self, fcs: FlowCells, i: bool, imager: Imager) -> Any:
-        ...
+    async def run(self, fcs: FlowCells, i: bool, imager: Imager) -> Any: ...
 
     @classmethod
     @abstractmethod
-    def default(cls: type[T]) -> T:
-        ...
+    def default(cls: type[T]) -> T: ...
 
 
 async def pump_prime(fcs: FlowCells, i: bool, cmd: Pump | Prime):

@@ -10,8 +10,7 @@ class UsesSerial(metaclass=ABCMeta):
     com: COM
 
     @abstractmethod
-    async def initialize(self) -> None:
-        ...
+    async def initialize(self) -> None: ...
 
 
 class Movable(metaclass=ABCMeta):
@@ -28,8 +27,7 @@ class Movable(metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    async def pos(self) -> int:
-        ...
+    async def pos(self) -> int: ...
 
     def convert(self, p: Annotated[float, "mm"]) -> int:
         return int(p * 1000 * self.STEPS_PER_UM)

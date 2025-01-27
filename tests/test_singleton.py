@@ -1,12 +1,10 @@
 from pyseq2.utils.utils import Singleton
 
 
-class TestSingleton(metaclass=Singleton):
-    ...
+class TestSingleton(metaclass=Singleton): ...
 
 
-class Meh:
-    ...
+class Meh: ...
 
 
 def test_singleton():

@@ -15,8 +15,7 @@ POWER_RANGE = (0, 500)
 mW = Annotated[int, "mW"]
 
 
-class LaserException(Exception):
-    ...
+class LaserException(Exception): ...
 
 
 def v_get_status(resp: str) -> bool:
