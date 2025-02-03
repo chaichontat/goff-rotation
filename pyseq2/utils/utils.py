@@ -9,6 +9,7 @@ IS_FAKE = lambda: os.name != "nt" or os.environ.get("FAKE_HISEQ", "0") == "1"
 
 T, P = TypeVar("T"), ParamSpec("P")
 
+
 # https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Metaprogramming.html#intercepting-class-creation
 class Singleton(type):
     instance = None
@@ -19,12 +20,10 @@ class Singleton(type):
         return cls.instance
 
 
-class InvalidResponse(Exception):
-    ...
+class InvalidResponse(Exception): ...
 
 
-class ParamChangeTimeout(Exception):
-    ...
+class ParamChangeTimeout(Exception): ...
 
 
 def ok_if_match(expected: Container[str] | str, exception_on_fail: bool = True) -> Callable[[str], bool]:
@@ -81,13 +80,11 @@ def chkrng(f: Callable[P, T], min_: float, max_: float, argnum: int = 0) -> Call
 
 
 @overload
-def λ_int(λ: Callable[[Any, Any], T]) -> Callable[[int, int], T]:
-    ...
+def λ_int(λ: Callable[[Any, Any], T]) -> Callable[[int, int], T]: ...
 
 
 @overload
-def λ_int(λ: Callable[[Any], T]) -> Callable[[int], T]:
-    ...
+def λ_int(λ: Callable[[Any], T]) -> Callable[[int], T]: ...
 
 
 def λ_int(λ: Callable[[Any], T] | Callable[[Any, Any], T]) -> Callable[[int], T] | Callable[[int, int], T]:
@@ -101,17 +98,15 @@ IntFloat = float
 
 
 @overload
-def λ_float(λ: Callable[[Any, Any], T]) -> Callable[[IntFloat, IntFloat], T]:
-    ...
+def λ_float(λ: Callable[[Any, Any], T]) -> Callable[[IntFloat, IntFloat], T]: ...
 
 
 @overload
-def λ_float(λ: Callable[[Any], T]) -> Callable[[IntFloat], T]:
-    ...
+def λ_float(λ: Callable[[Any], T]) -> Callable[[IntFloat], T]: ...
 
 
 def λ_float(
-    λ: Callable[[Any], T] | Callable[[Any, Any], T]
+    λ: Callable[[Any], T] | Callable[[Any, Any], T],
 ) -> Callable[[IntFloat], T] | Callable[[IntFloat, IntFloat], T]:
     def inner(*args: IntFloat) -> T:
         return λ(*args)

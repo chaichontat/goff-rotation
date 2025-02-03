@@ -160,7 +160,7 @@ class Pump(UsesSerial):
         v_pull: Sps = 400,
         v_push: Sps = 6400,
         reverse: bool = False,
-    ) -> AsyncGenerator[None, None]:
+    ) -> AsyncGenerator[None]:
         try:
             logger.info(f"Pump {self.name}:{' Reverse' if reverse else ''} Pulling. ")
             await self._pushpull("pull", vol, speed=v_pull, reverse=reverse)

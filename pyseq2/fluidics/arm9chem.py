@@ -106,7 +106,7 @@ class ARM9Chem(UsesSerial):
         await self.com.send(ARM9Cmd.SET_VACUUM(onoff))
 
     @asynccontextmanager
-    async def shutoff_valve(self) -> AsyncGenerator[None, None]:
+    async def shutoff_valve(self) -> AsyncGenerator[None]:
         try:
             await self.com.send(ARM9Cmd.SET_SHUTOFF_VALVE(1))
             yield
