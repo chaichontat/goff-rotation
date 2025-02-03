@@ -114,8 +114,7 @@ class _Camera:
         else:
             return DCAMDict.from_dcam(handle)
 
-    def initialize(self) -> None:
-        ...
+    def initialize(self) -> None: ...
 
     @property
     def capture_mode(self) -> DCAM_CAPTURE_MODE:
@@ -127,7 +126,7 @@ class _Camera:
         self._capture_mode = m
 
     @contextmanager
-    def capture(self) -> Generator[None, None, None]:
+    def capture(self) -> Generator[None]:
         API.dcam_capture(self.handle)
         logger.info(f"Cam {self.id_}: Started capturing.")
         try:
@@ -146,7 +145,7 @@ class _Camera:
             raise DCAMException(f"Invalid status. Got {s.value}.")
 
     @contextmanager
-    def attach(self, n_bundles: int, dim: tuple[int, int]) -> Generator[UInt16Array, None, None]:
+    def attach(self, n_bundles: int, dim: tuple[int, int]) -> Generator[UInt16Array]:
         """Generates a numpy array and "attach" it to the camera.
         Aka. Tells the camera to write captured bundles here.
 
@@ -255,20 +254,18 @@ class Cameras:
     @contextmanager
     def _attach(
         self, n_bundles: int, dim: tuple[int, int], cam: Literal[0, 1] = ...
-    ) -> Generator[UInt16Array, None, None]:
-        ...
+    ) -> Generator[UInt16Array]: ...
 
     @overload
     @contextmanager
     def _attach(
         self, n_bundles: int, dim: tuple[int, int], cam: Literal[2] = ...
-    ) -> Generator[tuple[UInt16Array, UInt16Array], None, None]:
-        ...
+    ) -> Generator[tuple[UInt16Array, UInt16Array]]: ...
 
     @contextmanager
     def _attach(
         self, n_bundles: int, dim: tuple[int, int], cam: Cam = 2
-    ) -> Generator[UInt16Array, None, None] | Generator[tuple[UInt16Array, UInt16Array], None, None]:
+    ) -> Generator[UInt16Array] | Generator[tuple[UInt16Array, UInt16Array]]:
         if cam == 2:
             with self[0].attach(n_bundles, dim) as buf1, self[1].attach(n_bundles, dim) as buf2:
                 logger.debug(f"Allocated memory for {n_bundles} bundles.")

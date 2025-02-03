@@ -3,8 +3,7 @@ from typing import Protocol
 
 
 class Fakes(Protocol):
-    def __call__(self, s: str) -> str:
-        ...
+    def __call__(self, s: str) -> str: ...
 
 
 class FakeX:
